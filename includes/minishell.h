@@ -15,9 +15,27 @@
 # include <sys/errno.h>
 # include <termios.h>
 # include <term.h>
+# include "../libft/libft.h"
+
+typedef struct	s_all
+{
+	t_list *env;
+	t_list *export;
+	t_list *arg;
+}				t_all;
 
 
-//тут возникнут потрясающие прототипы функций и прочие дефайны
+//builtins
+int		ft_pwd(void);
+int 	env_create(char **env, t_list **env_list);
+int 	ft_upd_env(t_list **env, char *key, char *val);
+int		MyEcho(t_list *args);
+int 	ft_env(t_list *env);
+
+
+
+//utils
+void	printlist(t_list *lst);
 
 
 #endif
