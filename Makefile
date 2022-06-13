@@ -1,39 +1,38 @@
 NAME		=	minishell
 
-HEADER		=	minishell.h
-
-SRC_F		=	main.c
+SRCS_F		=	main.c	ft_pwd.c	utils.c	echo.c		env.c	export.c	envCreate.c
 
 SRCS_D		=	src/
 
 INCLUDE		=	-I./includes/ -I./libft/
 
-SRCS		=	$(addprefix $(SRCS_D),$(SRC_F))
-
 OBJS		=	$(SRCS:.c=.o)
 
-FLAGS		=	-Wall -Wextra -Werror
+CC			=	gcc
+
+CFLAGS		=	-Wall -Wextra -Werror
+
+SRCS		=	$(addprefix $(SRCS_D),$(SRCS_F))
 
 LIBFT		=	./libft/libft.a
 
-%.o			: 	%.c	$(HEADER)
-				@echo 'Some magic...'`gcc $(FLAGS) -o $@ -c $< -I $(HEADER) -o $(<:.c=.o)`''
+$(NAME)		:	$(OBJS)
+				@echo '✨ ✨ ✨ \n'`$(MAKE) -C $(dir $(LIBFT))`''
+				@echo './minishell was created!'`$(CC) $(CFLAGS) $(INCLUDE) $(LIBFT) $(OBJS) -o $(NAME)`''
 
-all			:	$(NAME)
+all		:	$(NAME)
 
-$(NAME)		:	$(OBJ) $(HEADER)
-				@echo 'Some magic...'`$(MAKE) -C $(dir $(LIBFT))`''
-				@echo 'Done'`gcc $(FLAGS) $(INCLUDE) $(LIBFT) $(OBJS) -o $(NAME)`''
+%.o		:	%.c
+			@echo 'Some magic 🔮 '`$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@`''
 
-clean		:
-				@echo 'Cleaning...'`$(MAKE) clean -C $(dir $(LIBFT))`''
-				@echo 'Cleaned'`rm -rf $(OBJS)`''
+clean	:
+			@echo 'Washing away this shit 🧹 🧹 🧹 '`$(MAKE) clean -C $(dir $(LIBFT))`''
+			@echo 'Cleaned all except file name!'`rm -rf $(OBJS) $(OBJS:.o=.d)`''
 
+fclean	:	clean
+			@echo 'Cleaning file name... \n'`$(MAKE) fclean -C $(dir $(LIBFT))`''
+			@echo 'Cleaned all ♺ '`rm -rf $(NAME)`''
 
-fclean		:	clean
-				@echo 'Cleaning...'`$(MAKE) fclean -C $(dir $(LIBFT))`''
-				@echo 'Cleaned all'`rm -rf $(NAME)`''
+re		:	fclean all
 
-re			:	fclean all
-
-.PHONY		:	all clean fclean re
+.PHONY	:	all clean fclean re bonus
