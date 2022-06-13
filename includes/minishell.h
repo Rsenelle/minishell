@@ -31,6 +31,7 @@ int 	env_create(char **env, t_list **env_list);
 int 	ft_upd_env(t_list **env, char *key, char *val);
 int		MyEcho(t_list *args);
 int 	ft_env(t_list *env);
+int		export(t_list *env);
 
 
 

@@ -1,6 +1,6 @@
 NAME		=	minishell
 
-SRCS_F		=	main.c	ft_pwd.c	utils.c	export.c	echo.c		env.c
+SRCS_F		=	main.c	ft_pwd.c	utils.c	echo.c		env.c	export.c	envCreate.c
 
 SRCS_D		=	src/
 
