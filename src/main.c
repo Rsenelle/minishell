@@ -12,11 +12,15 @@ int main(int argc, char **argv, char **env)
 	(void)argv;
 
 
-	if (ft_pwd())
-		return (1);
+//	if (ft_pwd())
+//		return (1);
 	s_all.env = NULL;
-	env_create(env, &s_all.env);
-	env_create(env, &s_all.export);
+	while (1) {
+		env_create(env, &s_all.env);
+		printf("\n");
+		export(s_all.env);
+		break ;
+	}
 //	printlist(s_all.env);
 //	ft_env(s_all.env);
 
@@ -29,9 +33,9 @@ int main(int argc, char **argv, char **env)
 //		i += 1;
 //	}
 //	MyEcho(sample);
-	printlist(s_all.export);
-	printf("\n");
-	export(s_all.export);
-	printlist(s_all.export);
+//	printlist(s_all.export);
+//	printf("\n");
+//	export(s_all.export);
+//	print_export(s_all.export);
 	return 0;
 }

@@ -15,3 +15,4 @@ void	printlist(t_list *lst)
 		lst=lst->next;
 	}
 }
+

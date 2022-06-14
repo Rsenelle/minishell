@@ -4,22 +4,6 @@
 
 #include "../includes/minishell.h"
 
-char *searchMin(t_list *exp)
-{
-	char *min;
-
-	min = exp->str;
-	while (exp)
-	{
-		if (ft_strncmp(exp->next->str, exp->str, ft_strlen(exp->str)) < 0)
-		{
-			min = exp->next->str;
-		}
-		exp = exp->next;
-	}
-	return (min);
-}
-
 void sortExport(t_list *env)
 {
 	short no_rerange;
@@ -33,7 +17,7 @@ void sortExport(t_list *env)
 	{
 		env = head;
 		no_rerange = 0;
-		while (env->next->next)
+		while (env->next)
 		{
 			if (ft_strncmp(env->str, env->next->str, ft_strlen(env->str)) > 0)
 			{
@@ -46,12 +30,44 @@ void sortExport(t_list *env)
 		}
 	}
 }
-
-int	export(t_list *env)
+void	print_export(t_list *lst)
 {
+	int i, j;
 
+	i = 0;
+	sortExport(lst);
+	while(lst)
+	{
+		j = 0;
+		ft_putnbr_fd(i++, 1);
+		ft_putstr_fd(" declare -x ", 1);
+		while (lst->str[j] != '=' || lst->str[j])
+		{
+			ft_putchar_fd(lst->str[j], 1);
+			j++;
+			if (lst->str[j] == '=')
+				break ;
+		}
+		if (lst->str[j])
+		{
+			ft_putchar_fd(lst->str[j], 1);
+			ft_putchar_fd('\"', 1);
+			while (lst->str[j++])
+				ft_putchar_fd(lst->str[j], 1);
+			ft_putendl_fd("\"", 1);
+		} else
+			ft_putchar_fd('\n', 1);
+		lst=lst->next;
+	}
+}
 
-	sortExport(env);
+int	export(t_list *env, char **argv)
+{
+	if (argv[1])
+	{
+
+	}
+	print_export(env);
 	return 0;
 
 }

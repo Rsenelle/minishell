@@ -20,7 +20,6 @@
 typedef struct	s_all
 {
 	t_list *env;
-	t_list *export;
 	t_list *arg;
 }				t_all;
 
@@ -37,6 +36,8 @@ int		export(t_list *env);
 
 //utils
 void	printlist(t_list *lst);
+void	print_export(t_list *lst);
+void	sortExport(t_list *env);
 
 
 #endif
